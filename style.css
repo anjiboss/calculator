@@ -1,0 +1,68 @@
+*{
+    background: pink;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+td:hover {
+    cursor: pointer;
+}
+#container {
+    width: 800px;
+    height: 500px;
+    display: flex;
+}
+/* Monitor************************** */
+#monitor{
+    background: #fff;
+    text-align: right;
+    font-size: 40pt;
+    padding-top: 20px;
+    width: 790px;
+    border: 4px solid black;
+    height: 100px;
+    /* height: 100px; */
+}
+#ope{
+    position: absolute;
+    font-size: 15pt;
+    top: 4px;
+    left: 4px; 
+}
+
+/* ****************** */
+/*TABLE ****************** */
+#left-table{
+    width: 37.5%;
+    height: 400px;
+}
+#right-table{
+    width: 62.5%;
+    height: 400px;
+}
+#right-table td{
+    width: 20%;
+}
+.numb, .key, .operator {
+    text-align: center;
+    color: #fff;
+    border: 3px solid #fff; 
+    font-size: 15pt;
+}
+.numb{
+    background: #aaa;
+}
+.key{
+    background-color: #820933;
+}
+.operator{
+    background-color: #3C474B;
+}
+#equal {
+    background-color: #A1C349;
+    color: #fff;
+    font-size: 15pt;
+    height: 122px;
+    border: 3px solid #fff; 
+
+}
