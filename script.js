@@ -3,13 +3,15 @@ const container = $("#container");
 const monitor = $("#monitor");
 const ope = $("#ope");
 let clicked = "";
-let tmpResult = ";"
+let tmpResult = "";
 let tmpNum;
 let curNum = "";
 let operator = ["+", "-", "X", "/", "="];
 let functionalKey = ["+/-", "BS", "CE", "AC"]
-let flag = false;
+let flag = false;//hasFirstNum
 let minus = false;
+let curOp = "";
+let checkEqual = false;
 
 //Create cal View
 //Left Table
@@ -27,9 +29,15 @@ for( let _ = 0; _ < 9; _ ++){
 
 $("td").click((e)=>{
     clicked = e.currentTarget.innerHTML;
-    console.log(clicked);
-    if(operator.includes(clicked)){ 
-        if (!flag){
+    //console.log(clicked);
+    
+    if(operator.includes(clicked)){
+        if(checkEqual && clicked !== "="){
+            curNum = tmpNum;
+            // flag = true;
+            checkEqual = false;
+        }
+        if (!flag && clicked !== "="){
             //case: num1 + "op" + num2
             tmpNum = Number(curNum);
             curOp = clicked;
@@ -44,14 +52,16 @@ $("td").click((e)=>{
             curNum = "";
             curOp = clicked;
             showOp(curOp);
-       }else if (clicked === "="){
+        }else if (clicked === "=" && curOp !== ""){
             tmpResult = result(tmpNum, Number(curNum), curOp)
             output(tmpResult);
             tmpNum = Number(tmpResult);
             curNum = "";
             flag = false;
+            checkEqual = true;
             showOp("");
        }
+
     }else if(functionalKey.includes(clicked)){
         switch (clicked) {
             case "+/-":
@@ -64,11 +74,26 @@ $("td").click((e)=>{
                 }
                 output(curNum)
                 break;
-        
+            case "BS":
+                curNum = replaceIndex(curNum);
+                // console.log(curNum)
+                output(curNum);
+                break;
+            case "CE":
+                curNum = "";
+                output("0")
+            case "AC":
+                curNum = "";
+                tmpNum = "";
+                flag = false;
+                curOp = "";
+                showOp(curOp);
+                output("0");
             default:
                 break;
         }
     }else{
+        checkEqual = false;
         curNum += e.currentTarget.innerHTML;
         output(curNum)
     }
@@ -77,9 +102,11 @@ $("td").click((e)=>{
 const output = (num) =>{
     monitor.html(num)
 }
+
 const showOp = (op) => {
     ope.html(op)
 }
+
 const result = (firstNum, secondNum, op) =>{
     switch (op) {
         case "+":
@@ -99,4 +126,12 @@ const result = (firstNum, secondNum, op) =>{
         default:
             break;
     }
+}
+
+const replaceIndex = (_str) => {
+    let newStr = "";
+    for (let i = 0; i < _str.length-1; i++){
+        newStr += _str[i]
+    }
+    return newStr;
 }
