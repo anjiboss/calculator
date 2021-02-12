@@ -143,4 +143,10 @@ const replaceIndex = (_str) => {
   return newStr;
 };
 
-const blink = (box) => {};
+const blink = (box) => {
+  curColor = box.css("background");
+  box.css("background", "red");
+  setTimeout(() => {
+    box.css("background", curColor);
+  }, 100);
+};
