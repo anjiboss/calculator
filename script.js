@@ -27,12 +27,10 @@ for (let _ = 0; _ < 9; _++) {
   inside++;
 }
 
-$("td").click((e) => {
-  console.log(e);
+$("td").click(function (e) {
+  blink($(this));
 
   clicked = e.currentTarget.innerHTML;
-  console.log("Click:" + clicked);
-  console.log("CurOp: " + curOp);
 
   if (operator.includes(clicked)) {
     if (checkEqual && clicked !== "=") {
@@ -87,8 +85,6 @@ $("td").click((e) => {
         output(curNum);
         break;
       case "CE":
-        console.log(tmpNum);
-        console.log(curOp);
         curNum = "";
         output("0");
         break;
@@ -146,3 +142,5 @@ const replaceIndex = (_str) => {
   }
   return newStr;
 };
+
+const blink = (box) => {};
