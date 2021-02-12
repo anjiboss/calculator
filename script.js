@@ -12,6 +12,7 @@ let flag = false; //hasFirstNum
 let minus = false;
 let curOp = "";
 let checkEqual = false;
+let history = [];
 
 //Create cal View
 //Left Table
@@ -49,6 +50,7 @@ $("td").click(function (e) {
       //case: num1 + "op" + num2 + "op"
 
       tmpResult = result(tmpNum, Number(curNum), curOp);
+      history.push(tmpResult);
       output(tmpResult);
       tmpNum = Number(tmpResult);
       curNum = "";
@@ -56,6 +58,7 @@ $("td").click(function (e) {
       showOp(curOp);
     } else if (clicked === "=" && curOp !== "") {
       tmpResult = result(tmpNum, Number(curNum), curOp);
+      history.push(tmpResult);
       output(tmpResult);
       tmpNum = Number(tmpResult);
       curNum = "";
