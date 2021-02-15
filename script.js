@@ -51,7 +51,7 @@ $("td").click(function (e) {
 
       tmpResult = result(tmpNum, Number(curNum), curOp);
 
-      addHistory(tmpResult);
+      addHistory(tmpNum, curNum, curOp, tmpResult);
 
       output(tmpResult);
       tmpNum = Number(tmpResult);
@@ -61,7 +61,7 @@ $("td").click(function (e) {
     } else if (clicked === "=" && curOp !== "") {
       tmpResult = result(tmpNum, Number(curNum), curOp);
 
-      addHistory(tmpResult);
+      addHistory(tmpNum, curNum, curOp, tmpResult);
 
       output(tmpResult);
       tmpNum = Number(tmpResult);
@@ -158,19 +158,40 @@ const blink = (box) => {
   }, 100);
 };
 
-const addHistory = (newHistory) => {
+const addHistory = (firstNum, secoundNum, op, result) => {
+  tmpHis = {
+    firstNum: firstNum,
+    secondNum: secoundNum,
+    op: op,
+    result: result,
+  };
   history = JSON.parse(window.localStorage.getItem("cal-his"));
   if (history !== null) {
-    history.push(newHistory);
+    history.push(tmpHis);
     console.log(history);
-    if (history.length > 10) {
+    if (history.length >= 10) {
       history.shift();
     }
     window.localStorage.clear();
     window.localStorage.setItem("cal-his", JSON.stringify(history));
   } else {
     history = [];
-    history.push(newHistory);
+    history.push(tmpHis);
     window.localStorage.setItem("cal-his", JSON.stringify(history));
   }
 };
+
+$("#show-history").click(() => {
+  histories = JSON.parse(window.localStorage.getItem("cal-his"));
+  if (histories !== null) {
+    console.log(histories);
+    histories.forEach((history) => {
+      $("#histories").append(
+        `<p>${history.firstNum} ${history.op} ${history.secondNum} = ${history.result}</p>`
+      );
+    });
+  }
+});
+$("#clear-history").click(() => {
+  window.localStorage.clear();
+});
