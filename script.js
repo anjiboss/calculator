@@ -50,7 +50,9 @@ $("td").click(function (e) {
       //case: num1 + "op" + num2 + "op"
 
       tmpResult = result(tmpNum, Number(curNum), curOp);
-      history.push(tmpResult);
+
+      addHistory(tmpResult);
+
       output(tmpResult);
       tmpNum = Number(tmpResult);
       curNum = "";
@@ -58,7 +60,9 @@ $("td").click(function (e) {
       showOp(curOp);
     } else if (clicked === "=" && curOp !== "") {
       tmpResult = result(tmpNum, Number(curNum), curOp);
-      history.push(tmpResult);
+
+      addHistory(tmpResult);
+
       output(tmpResult);
       tmpNum = Number(tmpResult);
       curNum = "";
@@ -152,4 +156,21 @@ const blink = (box) => {
   setTimeout(() => {
     box.css("background", curColor);
   }, 100);
+};
+
+const addHistory = (newHistory) => {
+  history = JSON.parse(window.localStorage.getItem("cal-his"));
+  if (history !== null) {
+    history.push(newHistory);
+    console.log(history);
+    if (history.length > 10) {
+      history.shift();
+    }
+    window.localStorage.clear();
+    window.localStorage.setItem("cal-his", JSON.stringify(history));
+  } else {
+    history = [];
+    history.push(newHistory);
+    window.localStorage.setItem("cal-his", JSON.stringify(history));
+  }
 };

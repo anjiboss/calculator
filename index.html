@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="../common/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div id="ope"></div>
-    <div id ="monitor">0</div>
+    <div id="monitor">0</div>
     <div id="container">
-        <table id="left-table">
-            
-        </table>
-        <table id="right-table">
-            <tr>
-                <td class="numb">.</td>
-                <td class="numb">+/-</td>
-                <td class="key">BS</td>
-                <td class="key">CE</td>
-                <td class="key">AC</td>
-            </tr>
-            <tr>
-                <td class="numb">0</td>
-                <td class="operator">+</td>
-                <td class="operator">-</td>
-                <td class="operator">X</td>
-                <td class="operator">/</td>
-            </tr>
-            <tr>
-                <td class="numb">000</td>
-                <td id="equal" colspan="4">=</td>
-            </tr>
-        </table>
+      <table id="left-table"></table>
+      <table id="right-table">
+        <tr>
+          <td class="numb">.</td>
+          <td class="numb">+/-</td>
+          <td class="key">BS</td>
+          <td class="key">CE</td>
+          <td class="key">AC</td>
+        </tr>
+        <tr>
+          <td class="numb">0</td>
+          <td class="operator">+</td>
+          <td class="operator">-</td>
+          <td class="operator">X</td>
+          <td class="operator">/</td>
+        </tr>
+        <tr>
+          <td class="numb">000</td>
+          <td id="equal" colspan="4">=</td>
+        </tr>
+      </table>
     </div>
-</body>
-<script src="script.js"></script>
+    <div id="history-container"></div>
+  </body>
+  <script src="script.js"></script>
 </html>
