@@ -13,6 +13,7 @@ let minus = false;
 let curOp = "";
 let checkEqual = false;
 let history = [];
+let historyBtnFlag = true;
 
 //Create cal View
 //Left Table
@@ -62,7 +63,9 @@ $("td").click(function (e) {
       tmpResult = result(tmpNum, Number(curNum), curOp);
 
       addHistory(tmpNum, curNum, curOp, tmpResult);
-
+      if (!historyBtnFlag) {
+        _history();
+      }
       output(tmpResult);
       tmpNum = Number(tmpResult);
       curNum = "";
@@ -168,7 +171,6 @@ const addHistory = (firstNum, secoundNum, op, result) => {
   history = JSON.parse(window.localStorage.getItem("cal-his"));
   if (history !== null) {
     history.push(tmpHis);
-    console.log(history);
     if (history.length >= 10) {
       history.shift();
     }
@@ -182,16 +184,28 @@ const addHistory = (firstNum, secoundNum, op, result) => {
 };
 
 $("#show-history").click(() => {
+  if (historyBtnFlag) {
+    _history();
+    $("#show-history").html("Hide History");
+    historyBtnFlag = !historyBtnFlag;
+  } else {
+    $("#show-history").html("Hide History");
+    historyBtnFlag = !historyBtnFlag;
+    $("#histories").html("");
+  }
+});
+function _history() {
   histories = JSON.parse(window.localStorage.getItem("cal-his"));
+  $("#histories").html("");
   if (histories !== null) {
-    console.log(histories);
     histories.forEach((history) => {
       $("#histories").append(
         `<p>${history.firstNum} ${history.op} ${history.secondNum} = ${history.result}</p>`
       );
     });
   }
-});
+}
 $("#clear-history").click(() => {
   window.localStorage.clear();
+  $("#histories").html("");
 });

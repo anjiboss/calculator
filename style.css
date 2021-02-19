@@ -66,3 +66,35 @@ td:hover {
   height: 122px;
   border: 3px solid #fff;
 }
+
+/* **** History Button */
+.history-btn {
+  width: 100px;
+  height: 50px;
+  outline: none;
+  border-radius: 10px;
+  color: #fff;
+}
+
+#show-history {
+  border: 1px solid #820933;
+  background: #a1c349;
+}
+
+#show-history:hover {
+  background: #3c474b;
+}
+
+#clear-history {
+  border: 1px solid #a1c349;
+  background: #820933;
+}
+#clear-history:hover {
+  background: #3c474b;
+}
+
+#histories > p {
+  font-size: larger;
+  background: #3c474b;
+  color: #fff;
+}
