@@ -189,7 +189,7 @@ $("#show-history").click(() => {
     $("#show-history").html("Hide History");
     historyBtnFlag = !historyBtnFlag;
   } else {
-    $("#show-history").html("Hide History");
+    $("#show-history").html("Show History");
     historyBtnFlag = !historyBtnFlag;
     $("#histories").html("");
   }
